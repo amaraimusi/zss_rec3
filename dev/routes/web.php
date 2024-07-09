@@ -98,6 +98,23 @@ Route::post('line_demo/audience_reg', 'App\Http\Controllers\LineDemoController@a
 Route::post('line_demo/audience_list', 'App\Http\Controllers\LineDemoController@audience_list');
 
 
+
+// 日誌管理画面
+Route::get('diary', 'App\Http\Controllers\DiaryController@index');
+Route::post('diary/reg_action', 'App\Http\Controllers\DiaryController@regAction');
+Route::get('diary/create', 'App\Http\Controllers\DiaryController@create');
+Route::post('diary/store', 'App\Http\Controllers\DiaryController@store');
+Route::get('diary/show', 'App\Http\Controllers\DiaryController@show');
+Route::get('diary/edit', 'App\Http\Controllers\DiaryController@edit');
+Route::post('diary/update', 'App\Http\Controllers\DiaryController@update');
+Route::post('diary/auto_save', 'App\Http\Controllers\DiaryController@auto_save');
+Route::post('diary/disabled', 'App\Http\Controllers\DiaryController@disabled');
+Route::post('diary/destroy', 'App\Http\Controllers\DiaryController@destroy');
+Route::get('diary/csv_download', 'App\Http\Controllers\DiaryController@csv_download');
+Route::post('diary/ajax_pwms', 'App\Http\Controllers\DiaryController@ajax_pwms');
+
+
+
 // ユーザー管理画面
 Route::get('user_mng', 'App\Http\Controllers\UserMngController@index');
 Route::get('user_mng/create', 'App\Http\Controllers\UserMngController@create');

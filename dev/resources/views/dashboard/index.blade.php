@@ -34,7 +34,19 @@
 	
 	
 		<div class="row" style="margin-top:20px;">
-		
+			<!-- カード -->
+			<div class="col-sm-4">
+				<div class="card border-primary ">
+					<div class="card-body" >
+						<h5 class="card-title text-primary" style="font-weight:bold">日誌</h5>
+						<div class="card_msg">
+							<p class="card-text" style="height:120px">日誌システム</p>
+						</div>
+						<a href="{{url('diary')}}" class="btn btn-primary">ページへ移動</a>
+					</div>
+				</div>
+			</div>
+			
 			<!-- カード -->
 			<div class="col-sm-4">
 				<div class="card border-primary ">
@@ -61,18 +73,7 @@
 				</div>
 			</div>
 		
-			<!-- カード -->
-			<div class="col-sm-4">
-				<div class="card border-primary ">
-					<div class="card-body" >
-						<h5 class="card-title text-primary" style="font-weight:bold">子犬管理</h5>
-						<div class="card_msg">
-							<p class="card-text" style="height:120px">子犬管理画面の見本です。</p>
-						</div>
-						<a href="{{url('small_dog')}}" class="btn btn-primary">ページへ移動</a>
-					</div>
-				</div>
-			</div>
+
 
 		</div><!--  row -->
 	
