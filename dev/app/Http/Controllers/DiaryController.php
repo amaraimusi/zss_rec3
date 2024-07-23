@@ -20,6 +20,9 @@ class DiaryController extends CrudBaseController{
 	// 画面のバージョン → 開発者はこの画面を修正したらバージョンを変更すること。バージョンを変更するとキャッシュやセッションのクリアが自動的に行われます。
 	public $this_page_version = '1.0.1';
 	
+	private $def_sort = 'diary_date'; // デフォルトソートフィールド
+	private $def_desc = 1; // デフォールトソート向き 0:昇順, 1:降順
+	
 	/**
 	 * indexページのアクション
 	 *
@@ -27,7 +30,7 @@ class DiaryController extends CrudBaseController{
 	 * @return \Illuminate\View\View
 	 */
 	public function index(Request $request){
-
+		
 		// ログアウトになっていたらログイン画面にリダイレクト
 		if(\Auth::id() == null) return redirect('login');
 		
@@ -68,7 +71,7 @@ class DiaryController extends CrudBaseController{
 					'updated_at' => $request->updated_at, // 更新日
 	
 					'update_user' => $request->update_user, // 更新者
-					'page' => $request->sort, // ページ番号
+					'page' => $request->page, // ページ番号
 					'sort' => $request->sort, // 並びフィールド
 					'desc' => $request->desc, // 並び向き
 					'per_page' => $request->per_page, // 行制限数
@@ -78,7 +81,11 @@ class DiaryController extends CrudBaseController{
 			// リクエストのパラメータが空かつ新バージョンフラグがOFFである場合、セッション検索データを検索データにセットする
 			$searches = $sesSearches;
 		}
-
+		
+		// デフォルトソート情報をセットする
+		if($searches['sort'] === null) $searches['sort'] = $this->def_sort;
+		if($searches['desc'] === null) $searches['desc'] = $this->def_desc;
+		
 		$searches['this_page_version'] = $this->this_page_version; // 画面バージョン
 		$searches['new_version'] = $new_version; // 新バージョンフラグ
 		session(['diary_searches_key' => $searches]); // セッションに検索データを書き込む
