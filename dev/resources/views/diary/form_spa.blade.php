@@ -31,10 +31,10 @@
 	</div>
 	
 	<!-- CBBXS-6007 -->
-	<div class="row mt-2">
+	<div class="row mt-2" style="display:none">
 		<div class='col-md-2 ' >カテゴリ</div>
 		<div class='col-md-10'>
-			<input type="text" name="category" class="form-control form-control-lg " value=""  maxlength="16"  required title="カテゴリは16文字以内で入力してください" />
+			<input type="text" name="category" class="form-control form-control-lg " value=""  maxlength="16"   title="カテゴリは16文字以内で入力してください" />
 			<span class="text-danger" data-valid-err='category'></span>
 		</div>
 	</div>

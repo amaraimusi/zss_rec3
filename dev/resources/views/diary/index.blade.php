@@ -109,8 +109,8 @@ $cbh = new CrudBaseHelper($crudBaseData);
 	</div>
 	
 	<div class="tool_btn_w">
-		<a href="diary/create" class="btn btn-success">新規登録・MPA型</a>
-		<button type="button" class="btn btn-success" onclick="clickCreateBtn();">新規登録・SPA型</button>
+		<a href="diary/create" class="btn btn-success" style="display:none">新規登録・MPA型</a>
+		<button type="button" class="btn btn-success" onclick="clickCreateBtn();">新規登録</button>
 	</div>
 </div>
 
@@ -145,7 +145,7 @@ $cbh = new CrudBaseHelper($crudBaseData);
 				<!-- CBBXS-6040 -->
 				<td>{{$ent->category}}</td>
 				<td>{!! $cbh->tdDate($ent->diary_date) !!}</td>
-				<td>{!! $cbh->tdNote($ent->diary_note, 'diary_note', 30) !!}</td>
+				<td>{!! $cbh->tdNote($ent->diary_note, 'diary_note', 200) !!}</td>
 
 				<!-- CBBXE -->
 				<td>{{$ent->sort_no}}</td>
@@ -158,11 +158,11 @@ $cbh = new CrudBaseHelper($crudBaseData);
 				<td>
 
 					{!! $cbh->rowExchangeBtn($searches) !!}<!-- 行入替ボタン -->
-					<a href="diary/show?id={{$ent->id}}" class="row_detail_btn btn btn-info btn-sm text-light ">詳細</a>
+					<a href="diary/show?id={{$ent->id}}" class="row_detail_btn btn btn-info btn-sm text-light " style="display:none">詳細</a>
 					<button type="button" class="row_edit_btn btn btn-primary btn-sm" onclick="clickEditBtn(this)">編集</button>
 					<button type="button" class="row_copy_btn btn btn-success btn-sm" onclick="clickCopyBtn(this)">複製</button>
-					<a href="diary/edit?id={{$ent->id}}" class="row_edit_btn btn btn-primary btn-sm">編集・MPA型</a>
-					<a href="diary/create?id={{$ent->id}}" class="row_copy_btn btn btn-success btn-sm">複製・MPA型</a>
+					<a href="diary/edit?id={{$ent->id}}" class="row_edit_btn btn btn-primary btn-sm" style="display:none">編集・MPA型</a>
+					<a href="diary/create?id={{$ent->id}}" class="row_copy_btn btn btn-success btn-sm" style="display:none">複製・MPA型</a>
 					{!! $cbh->disabledBtn($searches, $ent->id) !!}<!-- 削除/削除取消ボタン（無効/有効ボタン） -->
 					{!! $cbh->destroyBtn($searches, $ent->id) !!}<!-- 抹消ボタン -->
 					

@@ -138,7 +138,7 @@ function initClmShowHide(){
 	let iniClmData = [
 		-1, // ID
 		// CBBXS-6036
-		1, // カテゴリ
+		0, // カテゴリ
 		1, // 日誌日付
 		1, // 日誌
 
@@ -306,8 +306,36 @@ function openNoteDetail(btnElm,field){
  */
 function clickCreateBtn(btn){
 	
+	
+	
 	// SPA型・入力フォーム画面を開く
 	_showForm(null, 'create');
+	
+	_setTodayToNewInpForm();// 新規入力フォームの日誌日付に本日をセットする
+}
+
+// 新規入力フォームの日誌日付に本日をセットする
+function _setTodayToNewInpForm(){
+	
+	var date = new Date()
+	var year = date.getFullYear()
+	var month = date.getMonth() + 1
+	var day = date.getDate()
+  
+	var toTwoDigits = function (num, digit) {
+	  num += ''
+	  if (num.length < digit) {
+		num = '0' + num
+	  }
+	  return num
+	}
+	
+	var yyyy = toTwoDigits(year, 4)
+	var mm = toTwoDigits(month, 2)
+	var dd = toTwoDigits(day, 2)
+	var ymd = yyyy + "-" + mm + "-" + dd;
+	
+	document.querySelector('input[name="diary_date"]').value = ymd;
 }
 
 /**

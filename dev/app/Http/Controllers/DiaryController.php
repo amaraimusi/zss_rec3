@@ -169,6 +169,8 @@ class DiaryController extends CrudBaseController{
 		$userInfo = $this->getUserInfo(); // ログインユーザーのユーザー情報を取得する
 		
 		
+		$ent['category'] = 'diary';
+		
 
 		// CBBXS-6004
 		$model->category = $ent['category']; // カテゴリ
