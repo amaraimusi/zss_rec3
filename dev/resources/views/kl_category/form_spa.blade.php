@@ -32,14 +32,6 @@
 	
 	<!-- CBBXS-6007 -->
 	<div class="row mt-2">
-		<div class='col-md-2 ' >ID</div>
-		<div class='col-md-10'>
-			<input type="text" name="id" class="form-control form-control-lg " value=""  maxlength="11"  required title="IDは11文字以内で入力してください" />
-			<span class="text-danger" data-valid-err='id'></span>
-		</div>
-	</div>
-
-	<div class="row mt-2">
 		<div class='col-md-2 ' >カテゴリ名</div>
 		<div class='col-md-10'>
 			<input type="text" name="kl_category_name" class="form-control form-control-lg " value=""  maxlength="64"  required title="カテゴリ名は64文字以内で入力してください" />

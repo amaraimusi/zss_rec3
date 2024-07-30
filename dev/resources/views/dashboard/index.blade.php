@@ -47,28 +47,30 @@
 				</div>
 			</div>
 			
+			
 			<!-- カード -->
 			<div class="col-sm-4">
 				<div class="card border-primary ">
 					<div class="card-body" >
-						<h5 class="card-title text-primary" style="font-weight:bold">ネコ管理（見本版）</h5>
+						<h5 class="card-title text-primary" style="font-weight:bold">教え</h5>
 						<div class="card_msg">
-							<p class="card-text" style="height:120px">MPA型管理画面の見本です。</p>
+							<p class="card-text" style="height:120px"></p>
 						</div>
-						<a href="{{url('neko')}}" class="btn btn-primary">ページへ移動</a>
+						<a href="{{url('knowledge')}}" class="btn btn-primary">ページへ移動</a>
 					</div>
 				</div>
 			</div>
-		
+			
+			
 			<!-- カード -->
 			<div class="col-sm-4">
 				<div class="card border-primary ">
 					<div class="card-body" >
-						<h5 class="card-title text-primary" style="font-weight:bold">ネコ種別マスタ管理</h5>
+						<h5 class="card-title text-primary" style="font-weight:bold">教えカテゴリ</h5>
 						<div class="card_msg">
-							<p class="card-text" style="height:120px">マスタ管理画面の見本です。</p>
+							<p class="card-text" style="height:120px"></p>
 						</div>
-						<a href="{{url('neko_type')}}" class="btn btn-primary">ページへ移動</a>
+						<a href="{{url('kl_category')}}" class="btn btn-primary">ページへ移動</a>
 					</div>
 				</div>
 			</div>
@@ -78,53 +80,11 @@
 		</div><!--  row -->
 	
 	
-		<div class="row" style="margin-top:20px;">
-		
-			<!-- カード -->
-			<div class="col-sm-4">
-				<div class="card border-primary ">
-					<div class="card-body" >
-						<h5 class="card-title text-primary" style="font-weight:bold">有名猫管理（見本版）</h5>
-						<div class="card_msg">
-							<p class="card-text" style="height:120px">SPA型管理画面の見本です。</p>
-						</div>
-						<a href="{{url('big_cat')}}" class="btn btn-primary">ページへ移動</a>
-					</div>
-				</div>
-			</div>
-		
-
-
-		</div><!--  row -->
 		
 		
 		<div class="row" style="margin-top:20px;">
 		
-			<!-- カード -->
-			<div class="col-sm-4">
-				<div class="card border-primary ">
-					<div class="card-body" >
-						<h5 class="card-title text-primary" style="font-weight:bold">売上管理（見本版）</h5>
-						<div class="card_msg">
-							<p class="card-text" style="height:120px">管理画面の見本です。正規の売上管理ではありません。</p>
-						</div>
-						<a href="{{url('sales')}}" class="btn btn-primary">ページへ移動</a>
-					</div>
-				</div>
-			</div>
-		
-			<!-- カード -->
-			<div class="col-sm-4">
-				<div class="card border-primary ">
-					<div class="card-body" >
-						<h5 class="card-title text-primary" style="font-weight:bold">顧客管理（見本）</h5>
-						<div class="card_msg">
-							<p class="card-text" style="height:120px">管理画面の見本です。</p>
-						</div>
-						<a href="{{url('client')}}" class="btn btn-primary">ページへ移動</a>
-					</div>
-				</div>
-			</div>
+
 		
 			<!-- カード -->
 			<div class="col-sm-4">

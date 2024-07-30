@@ -1,4 +1,4 @@
-.;,/<?php
+<?php
 
 namespace App\Http\Controllers;
 
@@ -19,7 +19,7 @@ use App\Consts\ConstCrudBase;
  
  
  
-class KnowledgeController extends CrudBaseController{1111
+class KnowledgeController extends CrudBaseController{
 	
 	// 画面のバージョン → 開発者はこの画面を修正したらバージョンを変更すること。バージョンを変更するとキャッシュやセッションのクリアが自動的に行われます。
 	public $this_page_version = '1.0.1';

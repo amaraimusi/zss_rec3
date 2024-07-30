@@ -36,7 +36,7 @@ $cbh = new CrudBaseHelper($crudBaseData);
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
 	<li class="breadcrumb-item"><a href="{{ url('/') }}">ホーム</a></li>
-	<li class="breadcrumb-item active" aria-current="page">教えカテゴリ管理画面(見本版)</li>
+	<li class="breadcrumb-item active" aria-current="page">教えカテゴリ管理画面</li>
   </ol>
 </nav>
 
@@ -109,8 +109,7 @@ $cbh = new CrudBaseHelper($crudBaseData);
 	</div>
 	
 	<div class="tool_btn_w">
-		<a href="kl_category/create" class="btn btn-success">新規登録・MPA型</a>
-		<button type="button" class="btn btn-success" onclick="clickCreateBtn();">新規登録・SPA型</button>
+		<button type="button" class="btn btn-success" onclick="clickCreateBtn();">新規登録</button>
 	</div>
 </div>
 
@@ -161,8 +160,6 @@ $cbh = new CrudBaseHelper($crudBaseData);
 					<a href="kl_category/show?id={{$ent->id}}" class="row_detail_btn btn btn-info btn-sm text-light ">詳細</a>
 					<button type="button" class="row_edit_btn btn btn-primary btn-sm" onclick="clickEditBtn(this)">編集</button>
 					<button type="button" class="row_copy_btn btn btn-success btn-sm" onclick="clickCopyBtn(this)">複製</button>
-					<a href="kl_category/edit?id={{$ent->id}}" class="row_edit_btn btn btn-primary btn-sm">編集・MPA型</a>
-					<a href="kl_category/create?id={{$ent->id}}" class="row_copy_btn btn btn-success btn-sm">複製・MPA型</a>
 					{!! $cbh->disabledBtn($searches, $ent->id) !!}<!-- 削除/削除取消ボタン（無効/有効ボタン） -->
 					{!! $cbh->destroyBtn($searches, $ent->id) !!}<!-- 抹消ボタン -->
 					

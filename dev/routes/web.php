@@ -21,29 +21,7 @@ Route::get('logout', 'App\Http\Controllers\DashboardController@logout');
 
 Auth::routes(); // 認証関連
 
-// 売上管理画面
-Route::get('sales', 'App\Http\Controllers\SalesController@index');
-Route::get('sales/create', 'App\Http\Controllers\SalesController@create');
-Route::post('sales/store', 'App\Http\Controllers\SalesController@store');
-Route::get('sales/show', 'App\Http\Controllers\SalesController@show');
-Route::get('sales/edit', 'App\Http\Controllers\SalesController@edit');
-Route::post('sales/update', 'App\Http\Controllers\SalesController@update');
-Route::post('sales/auto_save', 'App\Http\Controllers\SalesController@auto_save');
-Route::post('sales/disabled', 'App\Http\Controllers\SalesController@disabled');
-Route::post('sales/destroy', 'App\Http\Controllers\SalesController@destroy');
-Route::get('sales/csv_download', 'App\Http\Controllers\SalesController@csv_download');
 
-// 顧客管理画面
-Route::get('client', 'App\Http\Controllers\ClientController@index');
-Route::get('client/create', 'App\Http\Controllers\ClientController@create');
-Route::post('client/store', 'App\Http\Controllers\ClientController@store');
-Route::get('client/show', 'App\Http\Controllers\ClientController@show');
-Route::get('client/edit', 'App\Http\Controllers\ClientController@edit');
-Route::post('client/update', 'App\Http\Controllers\ClientController@update');
-Route::post('client/auto_save', 'App\Http\Controllers\ClientController@auto_save');
-Route::post('client/disabled', 'App\Http\Controllers\ClientController@disabled');
-Route::post('client/destroy', 'App\Http\Controllers\ClientController@destroy');
-Route::get('client/csv_download', 'App\Http\Controllers\ClientController@csv_download');
 
 // ネコ管理画面
 Route::get('neko', 'App\Http\Controllers\NekoController@index');
@@ -71,34 +49,6 @@ Route::post('neko_type/disabled', 'App\Http\Controllers\NekoTypeController@disab
 Route::post('neko_type/destroy', 'App\Http\Controllers\NekoTypeController@destroy');
 Route::get('neko_type/csv_download', 'App\Http\Controllers\NekoTypeController@csv_download');
 
-// 子犬管理画面
-Route::get('small_dog', 'App\Http\Controllers\SmallDogController@index');
-Route::get('small_dog/create', 'App\Http\Controllers\SmallDogController@create');
-Route::post('small_dog/store', 'App\Http\Controllers\SmallDogController@store');
-Route::get('small_dog/show', 'App\Http\Controllers\SmallDogController@show');
-Route::get('small_dog/edit', 'App\Http\Controllers\SmallDogController@edit');
-Route::post('small_dog/update', 'App\Http\Controllers\SmallDogController@update');
-Route::post('small_dog/auto_save', 'App\Http\Controllers\SmallDogController@auto_save');
-Route::post('small_dog/disabled', 'App\Http\Controllers\SmallDogController@disabled');
-Route::post('small_dog/destroy', 'App\Http\Controllers\SmallDogController@destroy');
-Route::get('small_dog/csv_download', 'App\Http\Controllers\SmallDogController@csv_download');
-
-// 有名猫管理画面（SPA型の見本管理画面）
-Route::get('big_cat', 'App\Http\Controllers\BigCatController@index');
-Route::post('big_cat/ajax_reg', 'App\Http\Controllers\BigCatController@ajax_reg');
-Route::post('big_cat/ajax_delete', 'App\Http\Controllers\BigCatController@ajax_delete');
-Route::post('big_cat/auto_save', 'App\Http\Controllers\BigCatController@auto_save');
-Route::post('big_cat/ajax_pwms', 'App\Http\Controllers\BigCatController@ajax_pwms');
-Route::get('big_cat/csv_download', 'App\Http\Controllers\BigCatController@csv_download');
-Route::post('big_cat/bulk_reg', 'App\Http\Controllers\BigCatController@bulk_reg');
-
-// LINEデモ
-Route::get('line_demo', 'App\Http\Controllers\LineDemoController@index');
-Route::get('line_demo/audience', 'App\Http\Controllers\LineDemoController@audience');
-Route::post('line_demo/audience_reg', 'App\Http\Controllers\LineDemoController@audience_reg');
-Route::post('line_demo/audience_list', 'App\Http\Controllers\LineDemoController@audience_list');
-
-
 
 // 日誌管理画面
 Route::get('diary', 'App\Http\Controllers\DiaryController@index');
@@ -113,6 +63,36 @@ Route::post('diary/disabled', 'App\Http\Controllers\DiaryController@disabled');
 Route::post('diary/destroy', 'App\Http\Controllers\DiaryController@destroy');
 Route::get('diary/csv_download', 'App\Http\Controllers\DiaryController@csv_download');
 Route::post('diary/ajax_pwms', 'App\Http\Controllers\DiaryController@ajax_pwms');
+
+
+// 教え画面
+Route::get('knowledge', 'App\Http\Controllers\KnowledgeController@index');
+Route::post('knowledge/reg_action', 'App\Http\Controllers\KnowledgeController@regAction');
+Route::get('knowledge/create', 'App\Http\Controllers\KnowledgeController@create');
+Route::post('knowledge/store', 'App\Http\Controllers\KnowledgeController@store');
+Route::get('knowledge/show', 'App\Http\Controllers\KnowledgeController@show');
+Route::get('knowledge/edit', 'App\Http\Controllers\KnowledgeController@edit');
+Route::post('knowledge/update', 'App\Http\Controllers\KnowledgeController@update');
+Route::post('knowledge/auto_save', 'App\Http\Controllers\KnowledgeController@auto_save');
+Route::post('knowledge/disabled', 'App\Http\Controllers\KnowledgeController@disabled');
+Route::post('knowledge/destroy', 'App\Http\Controllers\KnowledgeController@destroy');
+Route::get('knowledge/csv_download', 'App\Http\Controllers\KnowledgeController@csv_download');
+Route::post('knowledge/ajax_pwms', 'App\Http\Controllers\KnowledgeController@ajax_pwms');
+
+
+// 教えカテゴリ画面
+Route::get('kl_category', 'App\Http\Controllers\KlCategoryController@index');
+Route::post('kl_category/reg_action', 'App\Http\Controllers\KlCategoryController@regAction');
+Route::get('kl_category/create', 'App\Http\Controllers\KlCategoryController@create');
+Route::post('kl_category/store', 'App\Http\Controllers\KlCategoryController@store');
+Route::get('kl_category/show', 'App\Http\Controllers\KlCategoryController@show');
+Route::get('kl_category/edit', 'App\Http\Controllers\KlCategoryController@edit');
+Route::post('kl_category/update', 'App\Http\Controllers\KlCategoryController@update');
+Route::post('kl_category/auto_save', 'App\Http\Controllers\KlCategoryController@auto_save');
+Route::post('kl_category/disabled', 'App\Http\Controllers\KlCategoryController@disabled');
+Route::post('kl_category/destroy', 'App\Http\Controllers\KlCategoryController@destroy');
+Route::get('kl_category/csv_download', 'App\Http\Controllers\KlCategoryController@csv_download');
+Route::post('kl_category/ajax_pwms', 'App\Http\Controllers\KlCategoryController@ajax_pwms');
 
 
 
