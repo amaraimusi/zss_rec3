@@ -244,24 +244,24 @@ class KnowledgeController extends CrudBaseController{
 		// 複製元のエンティティが空であれば、通常の新規入力になる。新規入力のデフォルト値をセットする。
 		if($ent==null){
 			$ent = $model->get();
-			// CBBXS-4002
-			$ent->id = ''; // ID
-			$ent->kl_text = ''; // 心得テキスト
-			$ent->xid = ''; // XID
-			$ent->kl_category = ''; // カテゴリ
-			$ent->contents_url = ''; // 内容URL
-			$ent->doc_name = ''; // 文献名
-			$ent->doc_text = ''; // 文献テキスト
-			$ent->dtm = ''; // 学習日時
-			$ent->next_dtm = ''; // 次回日時
-			$ent->level = ''; // 学習レベル
-			$ent->sort_no = ''; // 順番
-			$ent->delete_flg = 0; // 削除フラグ
-			$ent->update_user_id = ''; // 更新者
-			$ent->update_user = ''; // 更新ユーザー
-			$ent->ip_addr = ''; // IPアドレス
-			$ent->created_at = ''; // 生成日時
-			$ent->updated_at = ''; // 更新日時
+			// CBBXS-6006
+			$ent->id= '';
+			$ent->kl_text= '';
+			$ent->xid= '';
+			$ent->kl_category= '';
+			$ent->contents_url= '';
+			$ent->doc_name= '';
+			$ent->doc_text= '';
+			$ent->dtm= '';
+			$ent->next_dtm= '';
+			$ent->level= '';
+			$ent->sort_no= '';
+			$ent->delete_flg= '0';
+			$ent->update_user_id= '';
+			$ent->update_user= '';
+			$ent->ip_addr= '';
+			$ent->created_at= '';
+			$ent->updated_at= '';
 
 			// CBBXE
 		}
@@ -290,8 +290,8 @@ class KnowledgeController extends CrudBaseController{
 				'this_page_version'=>$this->this_page_version,
 				'crudBaseData' => $crudBaseData,
 				
-		    	// CBBXS-3037B
-		$klCategoryList = $model->getKlCategoryList(); // カテゴリ
+		    	// CBBXS-6010
+		    	'klCategoryList'=>$klCategoryList,
 
 		    	// CBBXE
 			
@@ -328,7 +328,7 @@ class KnowledgeController extends CrudBaseController{
 		
 		
 		$model = new Knowledge();
-		// CBBXS-3032
+		// CBBXS-6032
 		$model->id = $request->id; // ID
 		$model->kl_text = $request->kl_text; // 心得テキスト
 		$model->xid = $request->xid; // XID
@@ -385,8 +385,8 @@ class KnowledgeController extends CrudBaseController{
 		
 		$ent = Knowledge::find($id);
 		
-		// CBBXS-3037
-		$klCategoryList = $model->getKlCategoryList(); // カテゴリ
+		// CBBXS-6037
+		$klCategoryList = $model->getKlCategoryTypeList(); // カテゴリリスト
 
 		// CBBXE
 		
@@ -433,8 +433,7 @@ class KnowledgeController extends CrudBaseController{
 	
 		$ent = Knowledge::find($id);
 		
-		// CBBXS-3038
-		$klCategoryList = $model->getKlCategoryList(); // カテゴリ
+		// CBBXS-6068
 
 		// CBBXE
 		
@@ -452,8 +451,8 @@ class KnowledgeController extends CrudBaseController{
 				'this_page_version'=>$this->this_page_version,
 				'crudBaseData'=>$crudBaseData,
 				
-			    // CBBXS-3038B
-		$klCategoryList = $model->getKlCategoryList(); // カテゴリ
+			    // CBBXS-6039
+			    'klCategoryList'=>$klCategoryList,
 
 				// CBBXE
 			
@@ -492,7 +491,7 @@ class KnowledgeController extends CrudBaseController{
 
 		$model->id = $request->id;
 		
-		// CBBXS-3033
+		// CBBXS-6033
 		$model->id = $request->id; // ID
 		$model->kl_text = $request->kl_text; // 心得テキスト
 		$model->xid = $request->xid; // XID

@@ -32,14 +32,6 @@
 	
 	<!-- CBBXS-6007 -->
 	<div class="row mt-2">
-		<div class='col-md-2 ' >ID</div>
-		<div class='col-md-10'>
-			<input type="text" name="id" class="form-control form-control-lg " value=""  maxlength="11"  required title="IDは11文字以内で入力してください" />
-			<span class="text-danger" data-valid-err='id'></span>
-		</div>
-	</div>
-
-	<div class="row mt-2">
 		<div class='col-md-2' >心得テキスト </div>
 		<div class='col-md-10'>
 			<textarea name="kl_text" class="form-control form-control-lg " maxlength="2000" title="2000文字以内で入力してください" ></textarea>
@@ -47,14 +39,6 @@
 		</div>
 	</div>
 	
-	<div class="row mt-2">
-		<div class='col-md-2 ' >XID</div>
-		<div class='col-md-10'>
-			<input type="text" name="xid" class="form-control form-control-lg " value=""  maxlength="32"  required title="XIDは32文字以内で入力してください" />
-			<span class="text-danger" data-valid-err='xid'></span>
-		</div>
-	</div>
-
 	<div class="row mt-2">
 		<div class='col-md-2' >カテゴリ </div>
 		<div class='col-md-10'>

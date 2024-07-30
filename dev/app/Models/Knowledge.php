@@ -423,7 +423,8 @@ class Knowledge extends CrudBase
 		
 		$query = DB::table('kl_categorys')->
 		   select(['id', 'kl_category_name'])->
-		   where('delete_flg',0);
+		   where('delete_flg',0)->
+		   orderBy('sort_no', 'asc');
 		
 		$res = $query->get();
 		$list = [];
