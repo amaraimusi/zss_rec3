@@ -10,6 +10,8 @@ CrudBase Laravel10版
 
 [開発環境構築手順](doc/README_Environment2.md "開発環境構築手順")
 
+[フロントエンドのCrudBase開発時における、gulpのコンパイルについて](doc/README_crudbase_gulp.md "フロントエンドのCrudBase開発時における、gulpのコンパイルについて")
+
 
 [本番環境構築手順](doc/README_Product.md "本番環境構築手順")
 

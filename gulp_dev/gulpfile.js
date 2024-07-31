@@ -10,7 +10,7 @@ gulp.task('CrudBase', function () {
 });
 
 gulp.task('CrudBaseForCss', function () {
-	gulp.src('../dev/public/css/CrudBase/*.css')
+	gulp.src('../dev/public/css/CrudBase/src/*.css')
 	.pipe(concat('CrudBase.min.css'))
 	.pipe(gulp.dest('../dev/public/css/CrudBase/dist'));
 });
