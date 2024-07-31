@@ -9,6 +9,7 @@ $cbh = new CrudBaseHelper($crudBaseData);
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="favicon.png" type="image/png">
 	
 	<script src="{{ asset('/js/app.js') }}" defer></script>
 	<script src="{{ asset('/js/jquery-3.6.1.min.js') }}" defer></script>
