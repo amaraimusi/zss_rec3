@@ -8,8 +8,8 @@
  * 他のJavaScriptライブラリとの競合問題を考え、ベースとなるライブラリはVue.jsではなくjQueryを採用しています。
  * 
  * @license MIT
- * @since 2016-9-21 | 2023-9-27
- * @version 4.0.4
+ * @since 2016-9-21 | 2024-7-31
+ * @version 4.0.5
  * @histroy
  * 2024-4-17 v4.0.0 保守性の問題解決のため、大幅なリニューアルをする。
  * 2019-6-28 v2.8.3 CSVフィールドデータ補助クラス | CsvFieldDataSupport.js
@@ -34,6 +34,7 @@ class CrudBase4{
 	*     - string create_tr_place	新規入力追加場所フラグ 0:末尾(デフォルト） , 1:先頭
 	*/
 	constructor(crudBaseData, options){
+		
         this.crudBaseData = crudBaseData;
 		
 		if (options == null) options = {};
@@ -927,13 +928,17 @@ class CrudBase4{
 		// ボタン群の各ボタンのURLのidを書き換える
 		this._replaceButtonIdsInUrls(targetTr, ent.id);
 		
+		// 削除ボタンのdata-id属性にidをセットする
+		let deleteBtnElm = targetTr.find('.row_delete_btn');
+		if(deleteBtnElm[0]) deleteBtnElm.attr('data-id', ent.id);
+
 		// CrudBaseData内で保持するデータにも反映すること。
 		this._setEntityToCrudBaseData(ent2);
 		
 	}
 	
 	
-	/**　データを取得する
+	/** データを取得する
 	 */
 	_getData(){
 		if(this.crudBaseData.list_data){
@@ -1028,6 +1033,7 @@ class CrudBase4{
 		if(displayElm[0] == null && originalElm[0] == null){
 			jqTd.html(value2);
 		}
+		
 
 		// 表示要素が存在している場合
 		if(displayElm[0]){
