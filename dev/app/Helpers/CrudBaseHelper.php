@@ -506,7 +506,13 @@ class CrudBaseHelper
     	if($mode == 0){
     		return $this->crudBaseJsDist($this_page_version);
     	}else{
-    		return $this->crudBaseJsDev($this_page_version);
+			if (strpos($_SERVER['SERVER_NAME'], 'localhost') !== false) {
+				// 開発環境の場合
+				return $this->crudBaseJsDev($this_page_version);
+			}else{
+				// 本番環境用はCrudBase.min.jsを読み込む
+				return $this->crudBaseJsDist($this_page_version);
+			}
     	}
 
     }
