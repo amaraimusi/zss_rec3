@@ -78,6 +78,7 @@ Route::post('knowledge/disabled', 'App\Http\Controllers\KnowledgeController@disa
 Route::post('knowledge/destroy', 'App\Http\Controllers\KnowledgeController@destroy');
 Route::get('knowledge/csv_download', 'App\Http\Controllers\KnowledgeController@csv_download');
 Route::post('knowledge/ajax_pwms', 'App\Http\Controllers\KnowledgeController@ajax_pwms');
+Route::post('knowledge/learn_save', 'App\Http\Controllers\KnowledgeController@learn_save');
 
 
 // 教えカテゴリ画面

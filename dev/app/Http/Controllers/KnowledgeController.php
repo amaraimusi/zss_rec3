@@ -697,6 +697,131 @@ class KnowledgeController extends CrudBaseController{
 		
 		return 'success';
 	}
+	
+	
+	/**
+	 * Ajax | 心得エンティティのレベルなどを更新する
+	 *
+	 */
+	public function learn_save(){
+
+		info('learn_save');//■■■□□□■■■□□□
+		// ログアウトになっていたらログイン画面にリダイレクト
+		if(\Auth::id() == null) return redirect('login');
+		
+		
+		$json=$_POST['key1'];
+		
+		$ent = json_decode($json,true);//JSON文字を配列に戻す
+		
+		if(empty($ent['id'])) {
+			$res['err_msg'] = 'IDが空です。';
+			$json_str = json_encode($res);//JSONに変換
+			return $json_str;
+		}			
+		
+		// モデルを生成します。 新規入力アクションは真っ新なモデルを生成しますが、編集更新アクションの場合は、行データが格納されたモデルを生成します。
+		$id = $ent['id'];
+		$model = Knowledge::find($id);
+		
+		
+		/*■■■□□□■■■□□□
+		$model->id = $ent['id']; // ID
+		$model->kl_text = $ent['kl_text']; // 心得テキスト
+		$model->xid = $ent['xid']; // XID
+		$model->kl_category = $ent['kl_category']; // カテゴリ
+		$model->contents_url = $ent['contents_url']; // 内容URL
+		$model->doc_name = $ent['doc_name']; // 文献名
+		$model->doc_text = $ent['doc_text']; // 文献テキスト
+		*/
+		$model->dtm = $ent['dtm']; // 学習日時
+		$model->next_dtm = $ent['next_dtm']; // 次回日時
+		$model->level = $ent['level']; // 学習レベル
+		
+		$model->update(); // DB更新
+		
+		//dump($ent);//■■■□□□■■■□□□
+
+		$res = ['success'];
+		
+		$json_str = json_encode($res);//JSONに変換
+		
+		return $json_str;
+		
+		/*
+
+		
+		$model->id = $ent['id']; // ID
+		$model->kl_text = $ent['kl_text']; // 心得テキスト
+		$model->xid = $ent['xid']; // XID
+		$model->kl_category = $ent['kl_category']; // カテゴリ
+		$model->contents_url = $ent['contents_url']; // 内容URL
+		$model->doc_name = $ent['doc_name']; // 文献名
+		$model->doc_text = $ent['doc_text']; // 文献テキスト
+		$model->dtm = $ent['dtm']; // 学習日時
+		$model->next_dtm = $ent['next_dtm']; // 次回日時
+		$model->level = $ent['level']; // 学習レベル
+		
+		// データ保存
+		$this->Knowledge->begin();
+		$this->Knowledge->saveEntity($ent,array('form_type'=>'edit')); // 心得エンティティを保存
+		$this->Knowledge->commit();
+		
+		$res = array('success');
+		
+		$json_str = json_encode($res);//JSONに変換
+		
+		return $json_str;
+		
+		
+		
+
+
+		
+		// DBテーブルからDBフィールド情報を取得します。
+		$dbFieldData = $this->getDbFieldData('knowledges');
+		
+		// 値が空であればデフォルトをセットします。
+		$ent = $this->setDefalutToEmpty($ent, $dbFieldData);
+		
+		// モデルを生成します。 新規入力アクションは真っ新なモデルを生成しますが、編集更新アクションの場合は、行データが格納されたモデルを生成します。
+		$model = empty($id) ? new Knowledge() : Knowledge::find($id);
+		
+		$userInfo = $this->getUserInfo(); // ログインユーザーのユーザー情報を取得する
+		
+		
+
+		// CBBXS-6004
+
+
+		// CBBXE
+		
+		$model->delete_flg = 0;
+		$model->update_user_id = $userInfo['id'];
+		$model->ip_addr = $userInfo['ip_addr'];
+		$model->updated_at = date('Y-m-d H:i:s');
+		
+		
+		if(empty($id)){
+			$model->sort_no =$this->getNextSortNo('knowledges', 'asc');
+			$model->save(); // DBへ新規追加: 同時に$modelに新規追加した行のidがセットされる。
+			$ent['id'] = $model->id;
+		}else{
+			$model->update(); // DB更新
+		}
+		
+		// CBBXS-6005
+
+		// CBBXE
+		
+		$ent = $model->toArray();
+		
+		if(!empty($fRes['errs'])) $ent['errs'] = $fRes['errs'];
+		
+		$json = json_encode($ent, JSON_HEX_TAG | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_HEX_APOS);
+		
+		return $json;*/
+	}
 
 
 }

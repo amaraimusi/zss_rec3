@@ -15,6 +15,7 @@ $cbh = new CrudBaseHelper($crudBaseData);
 	<script src="{{ asset('/js/jquery-3.6.1.min.js') }}" defer></script>
 	{!! $cbh->crudBaseJs(1, $this_page_version) !!}
 	<script src="{{ asset('/js/Knowledge/index.js')  . $ver_str}} }}" defer></script>
+	<script src="{{ asset('/js/Knowledge/LearnCounter.js')  . $ver_str}} }}" defer></script>
 	
 	<link href="{{ asset('/css/app.css')  . $ver_str}}" rel="stylesheet">
 	<link href="{{ asset('/js/font/css/open-iconic.min.css') }}" rel="stylesheet">
@@ -22,7 +23,7 @@ $cbh = new CrudBaseHelper($crudBaseData);
 	<link href="{{ asset('/css/common/common.css')  . $ver_str}}" rel="stylesheet">
 	<link href="{{ asset('/css/Knowledge/index.css')  . $ver_str}}" rel="stylesheet">
 	
-	<title>教え管理画面</title>
+	<title>教え画面</title>
 	
 </head>
 
@@ -37,7 +38,7 @@ $cbh = new CrudBaseHelper($crudBaseData);
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
 	<li class="breadcrumb-item"><a href="{{ url('/') }}">ホーム</a></li>
-	<li class="breadcrumb-item active" aria-current="page">教え管理画面(見本版)</li>
+	<li class="breadcrumb-item active" aria-current="page">教え画面</li>
   </ol>
 </nav>
 
@@ -117,8 +118,7 @@ $cbh = new CrudBaseHelper($crudBaseData);
 	</div>
 	
 	<div class="tool_btn_w">
-		<a href="knowledge/create" class="btn btn-success">新規登録・MPA型</a>
-		<button type="button" class="btn btn-success" onclick="clickCreateBtn();">新規登録・SPA型</button>
+		<button type="button" class="btn btn-success" onclick="clickCreateBtn();">新規登録</button>
 	</div>
 </div>
 
@@ -131,7 +131,6 @@ $cbh = new CrudBaseHelper($crudBaseData);
 		<tr>
 			<th data-field='id'><?php echo $cbh->sortLink($searches, 'knowledge', 'id', 'ID'); ?></th>
 			<!-- CBBXS-6035 -->
-			<th data-field='id'><?php echo $cbh->sortLink($searches, 'knowledge', 'id', 'ID'); ?></th>
 			<th data-field='kl_text'><?php echo $cbh->sortLink($searches, 'knowledge', 'kl_text', '心得テキスト'); ?></th>
 			<th data-field='xid'><?php echo $cbh->sortLink($searches, 'knowledge', 'xid', 'XID'); ?></th>
 			<th data-field='kl_category'><?php echo $cbh->sortLink($searches, 'knowledge', 'kl_category', 'カテゴリ'); ?></th>
@@ -149,8 +148,8 @@ $cbh = new CrudBaseHelper($crudBaseData);
 			<th data-field='ip_addr'><?php echo $cbh->sortLink($searches, 'knowledge', 'ip_addr', 'IPアドレス'); ?></th>
 			<th data-field='created_at'><?php echo $cbh->sortLink($searches, 'knowledge', 'created_at', '生成日時'); ?></th>
 			<th data-field='updated_at'><?php echo $cbh->sortLink($searches, 'knowledge', 'updated_at', '更新日'); ?></th>
-
-			<th class='js_btns' 'style="width:280px"></th>
+			
+			<th class='js_btns' style="width:280px"></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -158,13 +157,14 @@ $cbh = new CrudBaseHelper($crudBaseData);
 			<tr>
 				<td>{!! $cbh->tdId($ent->id) !!}</td>
 				<!-- CBBXS-6040 -->
-				<td>{{$ent->id}}</td>
-				<td>{!! $cbh->tdNote($ent->kl_text, 'kl_text', 30) !!}</td>
+				<td>
+					{!! $cbh->tdNote($ent->kl_text, 'kl_text', 300) !!}
+				</td>
 				<td>{{$ent->xid}}</td>
 				<td>{!! $cbh->tdList($ent->kl_category, $klCategoryList) !!}</td>
 				<td>{!! $cbh->tdNote($ent->contents_url, 'contents_url', 30) !!}</td>
 				<td>{{$ent->doc_name}}</td>
-				<td>{!! $cbh->tdNote($ent->doc_text, 'doc_text', 30) !!}</td>
+				<td>{!! $cbh->tdNote($ent->doc_text, 'doc_text', 300) !!}</td>
 				<td>{{$ent->dtm}}</td>
 				<td>{{$ent->next_dtm}}</td>
 				<td>{{$ent->level}}</td>
@@ -178,13 +178,13 @@ $cbh = new CrudBaseHelper($crudBaseData);
 				<td>{{$ent->updated_at}}</td>
 
 				<td>
+					<button type="button" class="learn_btn btn btn-primary btn-sm" onclick="learnAction(this,{{$ent->id}})">覚え</button>
+					<span class="learned text-secondary"></span>
 
 					{!! $cbh->rowExchangeBtn($searches) !!}<!-- 行入替ボタン -->
 					<a href="knowledge/show?id={{$ent->id}}" class="row_detail_btn btn btn-info btn-sm text-light ">詳細</a>
 					<button type="button" class="row_edit_btn btn btn-primary btn-sm" onclick="clickEditBtn(this)">編集</button>
 					<button type="button" class="row_copy_btn btn btn-success btn-sm" onclick="clickCopyBtn(this)">複製</button>
-					<a href="knowledge/edit?id={{$ent->id}}" class="row_edit_btn btn btn-primary btn-sm">編集・MPA型</a>
-					<a href="knowledge/create?id={{$ent->id}}" class="row_copy_btn btn btn-success btn-sm">複製・MPA型</a>
 					{!! $cbh->disabledBtn($searches, $ent->id) !!}<!-- 削除/削除取消ボタン（無効/有効ボタン） -->
 					{!! $cbh->destroyBtn($searches, $ent->id) !!}<!-- 抹消ボタン -->
 					

@@ -17,6 +17,7 @@ let jqValidErrMsg; // バリデーションエラーメッセージ表示要素
 let jqRegistMsg; // 登録成功メッセージ要素	←「登録中」、「登録しました」などのメッセージを表示する。
 let jqCreateMode; // 新規入力モード ←新規入力モードのみ表示するセレクタ
 let jqEditMode; // 編集モード ←編集モードのみ表示するセレクタ
+let learnCounter; // 覚えカウンタークラス
 
 $(()=>{
     
@@ -51,7 +52,8 @@ $(()=>{
 	
 	autoSave = new AutoSave('auto_save', csrf_token);
 
-	chs = initClmShowHide(); // 列表示切替機能の設定と初期化
+	// 列表示切替機能の設定と初期化
+	chs = initClmShowHide(); 
 	
 	
 	// 行入替機能の初期化
@@ -123,6 +125,12 @@ $(()=>{
 	jqCreateMode = $('.js_create_mode'); // 新規入力モードのみ表示する要素
 	jqEditMode = $('.js_edit_mode'); // 編集モードのみ表示する要素
 
+	learnCounter = new LearnCounter({
+		'data': crudBaseData.list_data.data,
+		'tbl_xid':'main_tbl',
+		'id_slt':'.js_pwms_id',
+		'csrf_token':csrf_token,
+	});
     
 });
 
@@ -138,7 +146,6 @@ function initClmShowHide(){
 	let iniClmData = [
 		-1, // ID
 		// CBBXS-6036
-		1, // ID
 		1, // 心得テキスト
 		1, // XID
 		1, // カテゴリ
@@ -457,6 +464,15 @@ function pwmsAction(kind_no){
 */
 function pwmsSwitchAll(checkbox){
 	pwms.switchAllSelection(checkbox);
+}
+
+/**
+ * 覚えアクション
+ * @param object btnElm ボタン要素
+ * @param int id 心得ID
+ */
+function learnAction(btnElm,id){
+	learnCounter.learnClick(btnElm,id);
 }
 
 
