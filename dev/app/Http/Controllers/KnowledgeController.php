@@ -105,8 +105,8 @@ class KnowledgeController extends CrudBaseController{
 		
 		$model = new Knowledge();
 		$fieldData = $model->getFieldData();
-		$data = $model->getData($searches, ['def_per_page' => $def_per_page]);
-		$data_count = $data->total(); //　LIMIT制限を受けていないデータ件数
+		$listData = $model->getData($searches, ['def_per_page' => $def_per_page]);
+		$data_count = $listData->total(); //　LIMIT制限を受けていないデータ件数
 		
 		// CBBXS-6001
 		$klCategoryList = $model->getKlCategoryList(); // カテゴリリスト
@@ -114,7 +114,7 @@ class KnowledgeController extends CrudBaseController{
         // CBBXE
         
 		$crudBaseData = [
-				'list_data'=>$data,
+				'data' => $data,
 				'data_count'=>$data_count,
 				'searches'=>$searches,
 				'userInfo'=>$userInfo,
@@ -133,7 +133,7 @@ class KnowledgeController extends CrudBaseController{
 		];
         
 		return view('knowledge.index', [
-			    'data'=>$data,
+				'listData'=>$listData,
 			    'searches'=>$searches,
 				'userInfo'=>$userInfo,
 				'fieldData'=>$fieldData,

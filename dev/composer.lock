@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/amaraimusi/CrudBase.git",
-                "reference": "3f827d7875390a85b25a326c83d181e21bf0575d"
+                "reference": "e555e45a3b028cc5645f3ce006fff50158e2b517"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/amaraimusi/CrudBase/zipball/3f827d7875390a85b25a326c83d181e21bf0575d",
-                "reference": "3f827d7875390a85b25a326c83d181e21bf0575d",
+                "url": "https://api.github.com/repos/amaraimusi/CrudBase/zipball/e555e45a3b028cc5645f3ce006fff50158e2b517",
+                "reference": "e555e45a3b028cc5645f3ce006fff50158e2b517",
                 "shasum": ""
             },
             "require-dev": {
@@ -53,7 +53,7 @@
                 "issues": "https://github.com/amaraimusi/CrudBase/issues",
                 "source": "https://github.com/amaraimusi/CrudBase/tree/master"
             },
-            "time": "2023-09-15T13:48:47+00:00"
+            "time": "2024-08-29T09:42:29+00:00"
         },
         {
             "name": "aws/aws-crt-php",

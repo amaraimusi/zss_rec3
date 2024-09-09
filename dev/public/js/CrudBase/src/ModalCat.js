@@ -1,8 +1,8 @@
 
 /**
  * モーダル化ライブラリ
- * @since 2022-1-21 | 2022-2-22
- * @version 1.1.2
+ * @since 2022-1-21 | 2024-9-9
+ * @version 1.2.0
  * @auther amaraimusi
  * @license MIT
  */

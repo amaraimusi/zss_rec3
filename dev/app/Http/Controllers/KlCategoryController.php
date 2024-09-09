@@ -98,15 +98,15 @@ class KlCategoryController extends CrudBaseController{
 		
 		$model = new KlCategory();
 		$fieldData = $model->getFieldData();
-		$data = $model->getData($searches, ['def_per_page' => $def_per_page]);
-		$data_count = $data->total(); //　LIMIT制限を受けていないデータ件数
+		$listData = $model->getData($searches, ['def_per_page' => $def_per_page]);
+		$data_count = $listData->total(); //　LIMIT制限を受けていないデータ件数
 		
 		// CBBXS-6001
 
         // CBBXE
         
 		$crudBaseData = [
-				'list_data'=>$data,
+				'data' => $data,
 				'data_count'=>$data_count,
 				'searches'=>$searches,
 				'userInfo'=>$userInfo,
@@ -124,7 +124,7 @@ class KlCategoryController extends CrudBaseController{
 		];
         
 		return view('kl_category.index', [
-			    'data'=>$data,
+				'listData'=>$listData,
 			    'searches'=>$searches,
 				'userInfo'=>$userInfo,
 				'fieldData'=>$fieldData,

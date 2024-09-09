@@ -18,6 +18,7 @@ let jqRegistMsg; // 登録成功メッセージ要素	←「登録中」、「�
 let jqCreateMode; // 新規入力モード ←新規入力モードのみ表示するセレクタ
 let jqEditMode; // 編集モード ←編集モードのみ表示するセレクタ
 let learnCounter; // 覚えカウンタークラス
+let modalCat; // モーダル化ライブラリ
 
 $(()=>{
     
@@ -124,7 +125,9 @@ $(()=>{
 	jqRegistMsg = $('.js_registering_msg'); // 登録成功メッセージ要素	←「登録中」、「登録しました」などのメッセージを表示する。
 	jqCreateMode = $('.js_create_mode'); // 新規入力モードのみ表示する要素
 	jqEditMode = $('.js_edit_mode'); // 編集モードのみ表示する要素
-
+	modalCat = new ModalCat();
+	modalCat.modalize('form_spa');
+	
 	learnCounter = new LearnCounter({
 		'data': crudBaseData.list_data.data,
 		'tbl_xid':'main_tbl',
@@ -385,8 +388,7 @@ function _showForm(row_index, inp_mode){
 	jqValidErrMsg .html(''); // エラーメッセージをクリア
 	jqRegistMsg.html(''); // 登録中のメッセージをクリア
 
-	jqMain.hide(); // メイン一覧テーブルを隠す
-	jqForm.show(); // 入力フォームを表示する
+	modalCat.open(); // 入力フォームをモーダル表示する
 	
 }
 
@@ -394,8 +396,8 @@ function _showForm(row_index, inp_mode){
  * SPA型・入力フォーム画面を閉じる
  */
 function closeForm(){
-	jqMain.show();
-	jqForm.hide();
+
+	modalCat.close();// 入力フォームを閉じる
 }
 
 /**

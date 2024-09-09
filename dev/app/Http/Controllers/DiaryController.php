@@ -96,15 +96,17 @@ class DiaryController extends CrudBaseController{
 		
 		$model = new Diary();
 		$fieldData = $model->getFieldData();
-		$data = $model->getData($searches, ['def_per_page' => $def_per_page]);
-		$data_count = $data->total(); //　LIMIT制限を受けていないデータ件数
+		$listData = $model->getData($searches, ['def_per_page' => $def_per_page]);
+		$data_count = $listData->total(); //　LIMIT制限を受けていないデータ件数
 		
-		// CBBXS-6001
+		$data = [];
+		foreach($listData as $rEnt){
+			$data[] = (array)$rEnt;
+		}
 
-        // CBBXE
         
 		$crudBaseData = [
-				'list_data'=>$data,
+				'data' => $data,
 				'data_count'=>$data_count,
 				'searches'=>$searches,
 				'userInfo'=>$userInfo,
@@ -122,7 +124,7 @@ class DiaryController extends CrudBaseController{
 		];
         
 		return view('diary.index', [
-			    'data'=>$data,
+			    'listData'=>$listData,
 			    'searches'=>$searches,
 				'userInfo'=>$userInfo,
 				'fieldData'=>$fieldData,

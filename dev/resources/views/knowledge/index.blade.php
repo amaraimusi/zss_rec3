@@ -124,7 +124,7 @@ $cbh = new CrudBaseHelper($crudBaseData);
 
 <div id="auto_save" class="text-success"></div><!-- 自動保存のメッセージ表示区分 -->
 
-<div class="d-flex" style="margin-top:12px;">{{$data->appends(request()->query())->links('layouts.pagenatoin_b5')}} </div><!-- ページネーション -->
+<div class="d-flex" style="margin-top:12px;">{{$listData->appends(request()->query())->links('layouts.pagenatoin_b5')}} </div><!-- ページネーション -->
 
 <table id="main_tbl" class="table table-striped table-bordered table-condensed">
 	<thead>
@@ -153,12 +153,14 @@ $cbh = new CrudBaseHelper($crudBaseData);
 		</tr>
 	</thead>
 	<tbody>
-		@foreach ($data as $ent)
+		@foreach ($listData as $ent)
 			<tr>
 				<td>{!! $cbh->tdId($ent->id) !!}</td>
 				<!-- CBBXS-6040 -->
 				<td>
 					{!! $cbh->tdNote($ent->kl_text, 'kl_text', 300) !!}
+					<button type="button" class="learn_btn btn btn-primary btn-sm" onclick="learnAction(this,{{$ent->id}})">覚え</button>
+					<span class="learned text-secondary"></span>
 				</td>
 				<td>{{$ent->xid}}</td>
 				<td>{!! $cbh->tdList($ent->kl_category, $klCategoryList) !!}</td>
@@ -195,7 +197,7 @@ $cbh = new CrudBaseHelper($crudBaseData);
 	</tbody>
 </table>
 
-<div class="d-flex" style="margin-top:12px;">{{$data->appends(request()->query())->links('layouts.pagenatoin_b5')}} </div><!-- ページネーション -->
+<div class="d-flex" style="margin-top:12px;">{{$listData->appends(request()->query())->links('layouts.pagenatoin_b5')}} </div><!-- ページネーション -->
 
 <?php $cbh->divPwms($searches['delete_flg']); // 複数有効/削除の区分を表示する ?>
 
