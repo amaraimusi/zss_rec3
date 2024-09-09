@@ -2,7 +2,7 @@
 /**
  * モーダル化ライブラリ
  * @since 2022-1-21 | 2024-9-9
- * @version 1.2.0
+ * @version 1.2.1
  * @auther amaraimusi
  * @license MIT
  */
@@ -67,7 +67,9 @@ class ModalCat{
 			top: '50%',
 			transform: 'translate(-50%,-50%)',
 			width: param.width_rate + '%',
-			'z-index':z_index,
+			'z-index': z_index,
+			'max-height': '90vh', // 高さ制限(画面の上下にはみ出る場合はスクロールバーを表示する)
+			'overflow-y': 'auto'  // スクロールを有効にする
 		});
 
 		this.main = main;

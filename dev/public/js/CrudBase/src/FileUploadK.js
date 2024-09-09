@@ -12,10 +12,11 @@
  * ファイルの初期表示
  * 
  * @license MIT
- * @version 1.3.11
- * @date 2018-7-6 | 2023-4-21
+ * @version 1.4.0
+ * @date 2018-7-6 | 2024-9-9
  * @history 
- *  - 2021-04-29 var 1.3.0 大幅なバージョンアップ
+ *  - 2024-9-9  var 1.4.0 jfifとwebpに対応
+ *  - 2021-4-29 var 1.3.0 大幅なバージョンアップ
  *  - 2018-10-2 var 1.2.6 「Now Loading...」メッセージを表示する
  *  - 2018-9-18 var 1.2.5 コールバックパラメータを追加（pacb_param)
  *  - 2018-9-18 var 1.2.4 fuk_preview要素のstyle属性を修正
@@ -39,7 +40,7 @@ class FileUploadK{
 	 * - unit_slt まとまり要素のセレクタ  省略時はbody
 	 * - prog_slt 進捗バー要素のセレクタ
 	 * - err_slt  エラー要素のセレクタ
-	 * - img_width プレビュー画像サイスX　（画像ファイルのみ影響）
+	 * - img_width プレビュー画像サイスX （画像ファイルのみ影響）
 	 * - img_height プレビュー画像サイスY
 	 * - adf    補足データフラグリスト (Ancillary Data Flgs)
 	 *     - fn_flg ファイル名・表示フラグ (デフォ:1 以下同じ)
@@ -54,7 +55,7 @@ class FileUploadK{
 	 *          拡張子コンマ連結: 'jpg,png,gif'
 	 * - valid_mime_flg バリデーションMIMEフラグ 0:バリデーション行わない(デフォ) , 1:バリデーションを行う
 	 * - max_size 最大容量
-	 * - exist_fn 既存・識別子　hidden要素のname属性名に使用される。省略時は「_exist」がセットされる。
+	 * - exist_fn 既存・識別子 hidden要素のname属性名に使用される。省略時は「_exist」がセットされる。
 	 * @param callbacks
 	 * - function fileputEvent(box) ファイル配置イベント    DnD直後およびファイル選択直後のイベント
 	 */
@@ -134,7 +135,7 @@ class FileUploadK{
 	 *  - valid_ext バリデーション拡張子 | 許可拡張子文字列の配列、もしくは'image', 'audio', 'video', 'often_use'のいずれかの文字列を指定する。
 	 *  - pacb プレビュー後コールバック関数
 	 *  - pacb_param pacbに渡すパラメータ
-	 *  - img_width プレビュー画像サイスX　（画像ファイルのみ影響）
+	 *  - img_width プレビュー画像サイスX （画像ファイルのみ影響）
 	 *  - img_height プレビュー画像サイスY
 	 *  - midway_dp 中間ディレクトリパス
 	 */
@@ -314,6 +315,17 @@ class FileUploadK{
 		var server = xhr.getResponseHeader("server");
 		var modified = xhr.getResponseHeader("Last-Modified");
 		
+		// MIMEタイプが空であるなら拡張子からMIMEタイプを探してセットする。
+		if(mime_type == null || mime_type == ''){
+			if(fn != null && fn != ''){
+				let ext = this._getExtension(fn); // ファイル名から拡張子を取得する。
+				let map = this._getMimeMapping(); // MIMEのマップデータを取得する
+				
+				if(map[ext]){
+					mime_type = map[ext];
+				}
+			}
+		}
 		
 		var bEnt = {
 				'fn':fn,
@@ -393,6 +405,7 @@ class FileUploadK{
 			// BLOBの関連データからファイルデータを取得する
 			bData = this.box[fue_id]['bData'];
 			fileData = this._getFileDataFromBData(bData);
+
 		}else{
 			throw new Error("Unknown 'bin_type'");
 		}
@@ -614,7 +627,7 @@ class FileUploadK{
 	 * @return array ファイルデータ
 	 */
 	_getFileDataFromBData(bData){
-		
+
 		var fileData = []; // ファイルデータ
 		
 		for(var i in bData){
@@ -792,7 +805,7 @@ class FileUploadK{
 	 * @return string プレビューユニットHTML
 	 */
 	_makeFileUnitHtml(fue_id,fEnt,option){
-
+		
 		var p_unit_html = ""; // プレビューユニットHTML
 		
 		// エラーである場合
@@ -1119,7 +1132,7 @@ class FileUploadK{
 	/**
 	 * ファイルアップロード関連の要素を引数を指定して取得する
 	 * @param fue_id ファイルアップロード要素のid属性
-	 * @param key 要素を指定するキー　label,file,fuk_msg,preview
+	 * @param key 要素を指定するキー label,file,fuk_msg,preview
 	 * @return jQuery 要素
 	 */
 	_getElement(fue_id,key){
@@ -1321,7 +1334,7 @@ class FileUploadK{
 		}
 		
 		else if(valid_ext == 'image'){
-			validExts = ['jpg','jpeg','png','gif','bpg','svg','pdf'];
+			validExts = ['jpg','jpeg','png','gif','bpg','svg','pdf','jfif','webp'];
 		}
 		
 		else if(valid_ext == 'audio'){
@@ -1335,7 +1348,7 @@ class FileUploadK{
 		else if(valid_ext == 'often_use'){
 			validExts = [
 				'pdf',
-				'jpg','jpeg','png','gif','bpg', 'tif', 'tiff','svg',
+				'jpg','jpeg','png','gif','bpg', 'tif', 'tiff','svg','jfif','webp',
 				'zip','lzh', 'tar',
 				'xls', 'xlsx', 'doc', 'docx',
 				'txt', 'csv', 'xml', 
@@ -1489,6 +1502,8 @@ class FileUploadK{
 		map['jar'] = 'application/java-archive';
 		map['jpeg'] = 'image/jpeg';
 		map['jpg'] = 'image/jpeg';
+		map['jfif'] = 'image/jpeg';
+		map['webp'] = 'image/webp';
 		map['js'] = 'application/javascript';
 		map['json'] = 'application/json';
 		map['mid'] = 'audio/midi audio/x-midi';
