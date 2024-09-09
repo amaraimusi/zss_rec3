@@ -436,8 +436,7 @@ function regAction(){
 		'callback': (param)=>{
 			// DB登録後のコールバック処理内容
 			jqRegistMsg.html('登録しました。'); 
-				jqMain.show();
-				jqForm.hide();
+				modalCat.close();// 入力フォームを閉じる
 		}
 	});
 	
