@@ -101,7 +101,10 @@ class KlCategoryController extends CrudBaseController{
 		$listData = $model->getData($searches, ['def_per_page' => $def_per_page]);
 		$data_count = $listData->total(); //　LIMIT制限を受けていないデータ件数
 		
-		// CBBXS-6001
+		$data = [];
+		foreach($listData as $rEnt){
+			$data[] = (array)$rEnt;
+		}
 
         // CBBXE
         

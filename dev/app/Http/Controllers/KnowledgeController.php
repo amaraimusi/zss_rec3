@@ -22,9 +22,9 @@ use App\Consts\ConstCrudBase;
 class KnowledgeController extends CrudBaseController{
 	
 	// 画面のバージョン → 開発者はこの画面を修正したらバージョンを変更すること。バージョンを変更するとキャッシュやセッションのクリアが自動的に行われます。
-	public $this_page_version = '1.0.1';
+	public $this_page_version = '1.0.2';
 	
-	private $def_sort = 'sort_no'; // デフォルトソートフィールド
+	private $def_sort = 'next_dtm'; // デフォルトソートフィールド
 	private $def_desc = 0; // デフォールトソート向き 0:昇順, 1:降順
 	
 	/**
@@ -107,6 +107,11 @@ class KnowledgeController extends CrudBaseController{
 		$fieldData = $model->getFieldData();
 		$listData = $model->getData($searches, ['def_per_page' => $def_per_page]);
 		$data_count = $listData->total(); //　LIMIT制限を受けていないデータ件数
+
+		$data = [];
+		foreach($listData as $rEnt){
+			$data[] = (array)$rEnt;
+		}
 		
 		// CBBXS-6001
 		$klCategoryList = $model->getKlCategoryList(); // カテゴリリスト
@@ -185,7 +190,7 @@ class KnowledgeController extends CrudBaseController{
 		// CBBXS-6004
 		$model->id = $ent['id']; // ID
 		$model->kl_text = $ent['kl_text']; // 心得テキスト
-		$model->xid = $ent['xid']; // XID
+		$model->xid = $ent['xid'] ?? 0; // XID
 		$model->kl_category = $ent['kl_category']; // カテゴリ
 		$model->contents_url = $ent['contents_url']; // 内容URL
 		$model->doc_name = $ent['doc_name']; // 文献名

@@ -61,9 +61,17 @@
 	</div>
 	
 	<div class="row mt-2">
+		<div class='col-md-2 ' >親要素のxid</div>
+		<div class='col-md-10'>
+			<input type="number" name="xid" class="form-control form-control-lg " value=""   title="親要素のxid" />
+			<span class="text-danger" data-valid-err='xid'></span>
+		</div>
+	</div>
+	
+	<div class="row mt-2">
 		<div class='col-md-2 ' >文献名</div>
 		<div class='col-md-10'>
-			<input type="text" name="doc_name" class="form-control form-control-lg " value=""  maxlength="256"  required title="文献名は256文字以内で入力してください" />
+			<input type="text" name="doc_name" class="form-control form-control-lg " value=""  maxlength="256"   title="文献名は256文字以内で入力してください" />
 			<span class="text-danger" data-valid-err='doc_name'></span>
 		</div>
 	</div>
