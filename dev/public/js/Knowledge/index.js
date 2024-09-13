@@ -150,10 +150,10 @@ function initClmShowHide(){
 		-1, // ID
 		// CBBXS-6036
 		1, // 心得テキスト
-		1, // XID
-		1, // カテゴリ
-		1, // 内容URL
-		1, // 文献名
+		0, // XID
+		0, // カテゴリ
+		0, // 内容URL
+		0, // 文献名
 		1, // 文献テキスト
 		1, // 学習日時
 		1, // 次回日時
@@ -366,8 +366,7 @@ function _showForm(row_index, inp_mode){
 	}else if(inp_mode == 'edit' || inp_mode == 'copy'){
 		// メイン一覧テーブルの行インデックスに紐づく行からエンティティを取得する
 		ent = crudBase.getEntityByRowIndex(row_index);
-		console.log('ent');//■■■□□□■■■□□□
-		console.log(ent);//■■■□□□■■■□□□
+
 		
 	}else{
 		throw new Error('システムエラー23051109A');
@@ -389,6 +388,8 @@ function _showForm(row_index, inp_mode){
 	jqRegistMsg.html(''); // 登録中のメッセージをクリア
 
 	modalCat.open(); // 入力フォームをモーダル表示する
+	
+	crudBase.fitTextareaHeightForInpForm(); //  入力フォーム内のテキストエリアの高さを文字に合わせてフィットさせる
 	
 }
 

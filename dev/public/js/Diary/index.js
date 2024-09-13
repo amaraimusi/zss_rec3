@@ -380,8 +380,7 @@ function _showForm(row_index, inp_mode){
 	}else if(inp_mode == 'edit' || inp_mode == 'copy'){
 		// メイン一覧テーブルの行インデックスに紐づく行からエンティティを取得する
 		ent = crudBase.getEntityByRowIndex(row_index);
-		console.log('ent');//■■■□□□■■■□□□
-		console.log(ent);//■■■□□□■■■□□□
+
 		
 	}else{
 		throw new Error('システムエラー23051109A');
@@ -403,6 +402,8 @@ function _showForm(row_index, inp_mode){
 	jqRegistMsg.html(''); // 登録中のメッセージをクリア
 
 	modalCat.open(); // 入力フォームをモーダル表示する
+	
+	crudBase.fitTextareaHeightForInpForm(); //  入力フォーム内のテキストエリアの高さを文字に合わせてフィットさせる
 	
 }
 

@@ -8,9 +8,10 @@
  * 他のJavaScriptライブラリとの競合問題を考え、ベースとなるライブラリはVue.jsではなくjQueryを採用しています。
  * 
  * @license MIT
- * @since 2016-9-21 | 2024-7-31
- * @version 4.0.5
+ * @since 2016-9-21 | 2024-9-13
+ * @version 4.0.6
  * @histroy
+ * 2024-9-13 v4.0.6 入力フォーム内のテキストエリアの高さを入力文字に合わせて自動フィットするメソッドを作成
  * 2024-4-17 v4.0.0 保守性の問題解決のため、大幅なリニューアルをする。
  * 2019-6-28 v2.8.3 CSVフィールドデータ補助クラス | CsvFieldDataSupport.js
  * 2018-10-21 v2.8.0 ボタンサイズ変更機能にボタン表示切替機能を追加
@@ -1380,6 +1381,17 @@ class CrudBase4{
 	}
 	
 
+	/**
+	 * 入力フォーム内のテキストエリアの高さを文字に合わせてフィットさせる
+	 * 
+	 */
+	fitTextareaHeightForInpForm(){
+
+		this.jqForm.find('textarea').each((index, elm) => {
+			 let taElm = $(elm);
+			taElm.height(0).innerHeight(taElm[0].scrollHeight);
+		});
+	}
 	
 
 	
