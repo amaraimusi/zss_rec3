@@ -20,9 +20,7 @@ class LearnCounter{
 
 		// 休眠日数配列(単位は日）
 		this.dormants = [0,0.01,0.5,2,7,14,30,45,60,90,120,150,180,210,270,360];
-		
-		//var data = this._getKlData(); // 心得データを取得■■■□□□■■■□□□
-		
+
 		var data = $.extend(true, {}, params.data); // データのクローンを作成
 		this.data = this._prosKlData(data); // 心得データを加工
 		
@@ -34,17 +32,6 @@ class LearnCounter{
 	}
 	
 	
-	/**■■■□□□■■■□□□
-	 * 心得データを取得
-	 * @return object 心得データ
-	 *//*
-	_getKlData(){
-		var data_json = jQuery('#data_json').val();
-		var data0 = JSON.parse(data_json);
-
-		return data0;
-	}*/
-	
 	/**
 	 * 心得データを加工
 	 * @param object 心得データ
@@ -55,12 +42,9 @@ class LearnCounter{
 		var data = {};
 		for(var i in data0){
 			var ent = data0[i];
-			//console.log(ent);//■■■□□□■■■□□□
 
 			var res = this._checkDormant(ent);// 休眠チェック
-			//console.log(res.flg);//■■■□□□■■■□□□
-			//console.log(res);//■■■□□□■■■□□□
-			
+
 			ent['learned'] = res.flg; // 覚え済み
 			ent['about_rem'] = res.about_rem; // 約残
 			
@@ -87,26 +71,19 @@ class LearnCounter{
 			
 			// 心得IDを取得する
 			var td0 = tr.find('td').eq(0);
-			//var id = td0.find("[name='id']").val();■■■□□□■■■□□□
 			var id = td0.find(id_slt).val();
-			console.log('id=' + id);//■■■□□□■■■□□□
 
-			//var td1 = tr.find('td').eq(1);■■■□□□■■■□□□
 			var ent = data[id];
-			console.log(ent);//■■■□□□■■■□□□
-			//var ent = this.data[id];■■■□□□■■■□□□
-			
+
 			// 覚え済みである場合、覚えボタンを隠し、約残日を表示する
 			if(ent.learned == false){
-				console.log('済み');//■■■□□□■■■□□□
+
 				tr.find('.learn_btn').hide(); // 覚えボタンを隠す
 				
 				// 約残日を表示する
 				var learned_span = tr.find('.learned');
 				learned_span.html(ent.about_rem);
 				learned_span.show();
-			}else{
-				console.log('覚え');//■■■□□□■■■□□□
 			}
 
 		});

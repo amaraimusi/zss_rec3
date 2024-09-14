@@ -90,7 +90,7 @@ $(()=>{
 	
 	// ボタン設定: 表示切替とボタンサイズ
 	cbBtnSizeChanger.setCnfData([
-			{'slt':'.row_detail_btn','wamei':'詳細ボタン','visible':true ,'def_size':'btn-sm','size':'btn-sm'},
+			{'slt':'.row_detail_btn','wamei':'詳細ボタン','visible':false ,'def_size':'btn-sm','size':'btn-sm'},
 			{'slt':'.row_edit_btn','wamei':'編集ボタン','visible':true ,'def_size':'btn-sm','size':'btn-sm'},
 			{'slt':'.row_copy_btn','wamei':'複製ボタン','visible':true ,'def_size':'btn-sm','size':'btn-sm'},
 			{'slt':'.row_delete_btn','wamei':'削除ボタン','visible':true ,'def_size':'btn-sm','size':'btn-sm'},
@@ -129,7 +129,7 @@ $(()=>{
 	modalCat.modalize('form_spa');
 	
 	learnCounter = new LearnCounter({
-		'data': crudBaseData.list_data.data,
+		'data': crudBaseData.data,
 		'tbl_xid':'main_tbl',
 		'id_slt':'.js_pwms_id',
 		'csrf_token':csrf_token,
@@ -154,7 +154,7 @@ function initClmShowHide(){
 		0, // カテゴリ
 		0, // 内容URL
 		0, // 文献名
-		1, // 文献テキスト
+		0, // 文献テキスト
 		1, // 学習日時
 		1, // 次回日時
 		1, // 学習レベル
