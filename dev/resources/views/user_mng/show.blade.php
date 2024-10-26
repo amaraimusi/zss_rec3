@@ -1,5 +1,9 @@
-<?php 
+<?php
+use App\Helpers\CrudBaseHelper;
+
 $ver_str = '?v=' . $this_page_version;
+
+$cbh = new CrudBaseHelper($crudBaseData);
 ?>
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -14,10 +18,10 @@ $ver_str = '?v=' . $this_page_version;
 	<link href="{{ asset('/css/app.css')  . $ver_str}}" rel="stylesheet">
 	<link href="{{ asset('/js/font/css/open-iconic.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/common/common.css')  . $ver_str}}" rel="stylesheet">
-	<link href="{{ asset('/css/common/style.css')  . $ver_str }}" rel="stylesheet">
+	<link href="{{ asset('/css/common/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/Sales/show.css')  . $ver_str}}" rel="stylesheet">
 	
-	<title>ユーザー管理・詳細表示</title>
+	<title>ユーザー管理管理・詳細表示</title>
 	
 </head>
 
@@ -33,8 +37,8 @@ $ver_str = '?v=' . $this_page_version;
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
 	<li class="breadcrumb-item"><a href="{{ url('/') }}">ホーム</a></li>
-	<li class="breadcrumb-item"><a href="{{ url('user_mng') }}">ユーザー管理・一覧</a></li>
-	<li class="breadcrumb-item active" aria-current="page">ユーザー管理・詳細フォーム</li>
+	<li class="breadcrumb-item"><a href="{{ url('user_mng') }}">ユーザー管理管理・一覧</a></li>
+	<li class="breadcrumb-item active" aria-current="page">ユーザー管理管理・詳細フォーム</li>
   </ol>
 </nav>
 
@@ -56,14 +60,13 @@ $ver_str = '?v=' . $this_page_version;
 			
 			<input type="hidden" name="id" value="{{old('id', $ent->id)}}" />
 			
-			
 			<div class="row">
-				<label for="user_mng_name" class="col-12 col-md-5 col-form-label">ID</label>
-				<div class="col-12 col-md-7">{{ $ent->id }}</div>
+				<label for="id" class="col-12 col-md-5 col-form-label">id</label>
+				<div class="col-12 col-md-7">{{ $ent-> id}}</div>
 			</div>
-			
+			<!-- CBBXS-6008 -->
 			<div class="row">
-				<label for="name" class="col-12 col-md-5 col-form-label">ユーザー名</label>
+				<label for="name" class="col-12 col-md-5 col-form-label">ユーザー名/アカウント名</label>
 				<div class="col-12 col-md-7">{{ $ent-> name}}</div>
 			</div>
 
@@ -78,16 +81,16 @@ $ver_str = '?v=' . $this_page_version;
 			</div>
 
 			<div class="row">
-				<label for="role" class="col-12 col-md-5 col-form-label">権限</label>
-				<div class="col-12 col-md-7">{{$roleList[$ent->role] ?? '' }}</div>
+				<label for="password" class="col-12 col-md-5 col-form-label">パスワード</label>
+				<div class="col-12 col-md-7">{{ $ent-> password}}</div>
 			</div>
-			
+
 			<div class="row">
-				<label for="note" class="col-12 col-md-5 col-form-label">備考</label>
-				<div class="col-12 col-md-7">
-					<div style="white-space:pre-wrap; word-wrap:break-word;">{{ $ent->note }}</div>
+				<label for="neko_type" class="col-12 col-md-5 col-form-label">権限</label>
+				<div class="col-12 col-md-7">{{ $roleList[$ent->neko_type] ?? '' }}</div>
 			</div>
-			</div>
+
+			<!-- CBBXE -->
 
 			<div class="row">
 				<div class="col-12" style="text-align:center">
@@ -110,6 +113,7 @@ $ver_str = '?v=' . $this_page_version;
 
 <!-- JSON埋め込み -->
 <input type="hidden" id="csrf_token" value="{{ csrf_token() }}" >
+{!! $cbh->embedJson('crud_base_json', $crudBaseData) !!}
 
 </body>
 </html>

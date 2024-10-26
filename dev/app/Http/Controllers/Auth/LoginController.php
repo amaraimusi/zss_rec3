@@ -54,6 +54,9 @@ class LoginController extends Controller
             $credentials = [$this->username() => $username, 'password' => $password];
         }
         
+        // delete_flgが1である場合は認証失敗にする
+        $credentials['delete_flg'] = 0;
+        
         return $this->guard()->attempt($credentials, $request->filled('remember'));
     }
 }
