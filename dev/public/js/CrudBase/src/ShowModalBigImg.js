@@ -1,7 +1,7 @@
 /**
  * モーダル大画像表示モジュール
- * @since 2022-8-31
- * @version 1.0.0
+ * @since 2022-8-31 | 2024-12-8
+ * @version 1.1.0
 */
 class ShowModalBigImg{
 	
@@ -27,7 +27,7 @@ class ShowModalBigImg{
 	_createModalDiv(){
 		
 		// モーダル区分
-		let html = `<div id="show_modal_big_img_mdl" ><img src="" alt="" style="max-width:100%" /></div>`;
+		let html = `<div id="show_modal_big_img_mdl" ><img src="" alt="" style="max-width:100%;max-height:70vh" /></div>`;
 		jQuery('body').prepend(html);
 		
 		// モーダル化
@@ -112,7 +112,7 @@ class ModalCat_smbi{
 			position: 'absolute',
 			top: '50%',
 			transform: 'translate(-50%,-50%)',
-			width: '60%',
+			'max-width': '60%',
 		});
 
 		this.main = main;
